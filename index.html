@@ -288,6 +288,8 @@ const VIDEO_LIST = [
   { name: "梅木音葉", url: "https://youtu.be/vcbNOx8T9hU&t=1115" },
   { name: "輿水幸子", url: "https://youtu.be/Qhm2HWZUTZo&t=484" },
   { name: "ヘレン", url: "https://youtu.be/Qhm2HWZUTZo&t=1354" },
+  { name: "アナスタシア", url: "https://youtu.be/PAmJIvAjezg&t=574" },
+  { name: "新田美波", url: "https://youtu.be/PAmJIvAjezg&t=1181" },
   // 以後公開されたら追加(即更新は無理です)
 ];
  
@@ -406,7 +408,12 @@ function onYouTubeIframeAPIReady() {
     }
   });
 }
- 
+
+function getRandomNumber(min, max) {
+  // min以上max以下の整数をランダムに返す
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function onPlayerStateChange(event) {
   // 再生開始(state === 1)を検知したらタイマーをセット
   if (event.data === YT.PlayerState.PLAYING) {
@@ -414,6 +421,8 @@ function onPlayerStateChange(event) {
     switchTimer = setTimeout(playNext, SWITCH_SECONDS * 1000);
   }
 }
+
+
  
 function loadVideo(index, autoplay) {
   const videoId = extractVideoId(playlist[index].url);
