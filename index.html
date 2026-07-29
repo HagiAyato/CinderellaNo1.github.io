@@ -430,7 +430,7 @@ function loadVideo(index, autoplay) {
 function playNext() {
   currentIndex++;
   const autoplay = !document.getElementById('stopAutoplayCheckbox').checked;
-  if (currentIndex >= playlist.length) {
+  if (currentIndex >= playlist.length - 1) {
     clearTimeout(switchTimer);
     const loop = document.getElementById('loopCheckbox').checked;
     if (loop) {
