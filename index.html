@@ -94,7 +94,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
 <div id="options">
   <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)</label><br>
-  <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したらシャッフルして最初から</label>
+  <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から</label>
 </div>
 
 <button id="playBtn">扉を開く(リストの一番上から再生)</button>
@@ -430,7 +430,7 @@ function loadVideo(index, autoplay) {
 function playNext() {
   currentIndex++;
   const autoplay = !document.getElementById('stopAutoplayCheckbox').checked;
-  if (currentIndex >= playlist.length - 1) {
+  if (currentIndex >= playlist.length) {
     clearTimeout(switchTimer);
     const loop = document.getElementById('loopCheckbox').checked;
     if (loop) {
