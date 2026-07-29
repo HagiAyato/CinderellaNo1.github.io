@@ -85,7 +85,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
     <br>
     <br>
     <br>2026/07/25：幸子ヘレン追加、一部の動画で正常に次の動画に移らなかったので移動するタイミングを調整。頭出し用URLをポスト出来るようボタンを追加
-    <br>2026/07/29：アナスタシア美波追加、ループ再生モード、手動再生モード実装、クレジットの関係でNetlifyからGithub.pageに移管
+    <br>2026/07/29：アナスタシア美波響子美穂追加、ループ再生モード、手動再生モード実装、クレジットの関係でNetlifyからGithub.pageに移管<br>移動する秒数をランダム化
   </p>
   
 
@@ -93,7 +93,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 <a href="https://x.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Post</a><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script> 
 
 <div id="options">
-  <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)</label><br>
+  <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)<br>自動再生はカウントされないケースもあります。50秒ごとに自動で画面をクリックするようにすれば自動再生と同じようなことはできるかも？</label><br>
   <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から</label>
 </div>
 
@@ -290,6 +290,10 @@ const VIDEO_LIST = [
   { name: "ヘレン", url: "https://youtu.be/Qhm2HWZUTZo&t=1354" },
   { name: "アナスタシア", url: "https://youtu.be/PAmJIvAjezg&t=574" },
   { name: "新田美波", url: "https://youtu.be/PAmJIvAjezg&t=1181" },
+  { name: "五十嵐響子", url: "https://youtu.be/a0EPgALzUgA&t=584" },
+  { name: "小日向美穂", url: "https://youtu.be/a0EPgALzUgA&t=1238" },
+  
+  
   // 以後公開されたら追加(即更新は無理です)
 ];
  
@@ -418,7 +422,8 @@ function onPlayerStateChange(event) {
   // 再生開始(state === 1)を検知したらタイマーをセット
   if (event.data === YT.PlayerState.PLAYING) {
     clearTimeout(switchTimer);
-    switchTimer = setTimeout(playNext, SWITCH_SECONDS * 1000);
+    num = getRandomNumber(4500,4800)
+    switchTimer = setTimeout(playNext, num);
   }
 }
 
