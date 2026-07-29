@@ -431,7 +431,7 @@ function onPlayerStateChange(event) {
   // 再生開始(state === 1)を検知したらタイマーをセット
   if (event.data === YT.PlayerState.PLAYING) {
     clearTimeout(switchTimer);
-    num = getRandomNumber(45000,48000)
+    num = getRandomNumber(45000,47000)
     switchTimer = setTimeout(playNext, num);
   }
 }
