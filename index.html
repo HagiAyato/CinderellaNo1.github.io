@@ -434,9 +434,7 @@ function playNext() {
     clearTimeout(switchTimer);
     const loop = document.getElementById('loopCheckbox').checked;
     if (loop) {
-      playlist = shuffle(VIDEO_LIST);
       currentIndex = 0;
-      renderTable();
       loadVideo(currentIndex, autoplay);
     }
     return; // リストの最後まで来たら停止
