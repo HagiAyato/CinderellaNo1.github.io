@@ -75,34 +75,36 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
   <div id="player"></div>
 </div>
 
+<p><br><span style="background: yellow;"><b>・一応Youtubeの再生数カウントされると言われる秒数で切り替わりますが、自動再生の為カウントされない場合もあります。</b></span>
+    <br><span style="background: yellow;"><b>(1アカウントから1動画辺りの1日の再生カウント上限とかもあるらしいですがYoutubeは基本その手の情報は非公開なので正確な情報はありません。)</b></span>
+    <br><span style="background: yellow;"><b>・主に歌唱パートへのURLを拡散をメインに多くの人に見てもらえるようにすると効果的かもです。</b></span></p>
+    <br><span style="background: yellow;"><b>・手動再生用のオプションもありますのでそちらの利用も是非。</b></span></p>
+
 <details>
-  <summary>このサイトの説明！！！！！(クリックで表示)</summary>
+  <summary><b>このサイトの説明！！！！！(クリックで表示)</b></summary>
   <p>公式のコミュ+シンデレラNo.1の個別パートの歌詞動画の中から各アイドルの歌詞パートのみランダムで連続で再生します。
     <br>
     <br>・表中のアイドルの名前をクリックするとそのアイドルから再生します。
     <br>・未公開の動画に関しては追加され次第やります(直ぐの対応ではないのはご了承ください)
     <br>
-    <br>・一応Youtubeの再生数カウントされると言われる秒数ですがカウントされる保証は無いです。
-    <br>(一つのIPアドレスやアカウントから1動画辺りの1日の再生カウント上限もあるらしい?)
     <br>
     <br>・布教、バックグラウンドミュージック、その他ご自由にお使いください。お友達にも教えてあげて下さいね。
-    <br>・ドメインのエゴサはしてるので間違いがあればX辺りにポスト投げてくださると助かります。
+    <br>・なんかありましたら X @samasama76まで
     <br>・またHTMLコードはWTFPLのため好きに使ってください。
+    <br> 
     <br>・井村雪菜への投票もお願いします！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
     <br>
     <br>
-    <br>2026/07/25：幸子ヘレン追加、一部の動画で正常に次の動画に移らなかったので移動するタイミングを調整。頭出し用URLをポスト出来るようボタンを追加
-    <br>2026/07/29：アナスタシア美波響子美穂追加、ループ再生モード、手動再生モード実装、<br>クレジットの関係でNetlifyからGithub.pageに移管(たぶんできたはず?)、移動する秒数をランダム化
-    <br>2026/07/30：リロードボタン追加(pullrequested by HagiAyato)、その他細かいバグ修正
+    <br>2026/07/25:幸子ヘレン追加、一部の動画で正常に次の動画に移らなかったので移動するタイミングを調整。頭出し用URLをポスト出来るようボタンを追加
+    <br>2026/07/29:アナスタシア美波響子美穂追加、ループ再生モード、手動再生モード実装、<br>クレジットの関係でNetlifyからGithub.pageに移管(たぶんできたはず?)、移動する秒数をランダム化
+    <br>2026/07/30:リロードボタン追加(pullrequested by HagiAyato)、その他細かいバグ修正、奈緒加蓮追加
   </p>
-  
-
 </details>
 <a href="https://x.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Post</a><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script> 
 
 <div id="options">
-  <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)<br>自動再生はカウントされないケースもあります。50秒ごとに自動で画面をクリックするようにすれば自動再生と同じようなことはできるかも？</label><br>
-  <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から</label>
+  <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)<br>完全自動再生ではカウントされないケースもあります。<br>50秒ごとに自動で再生画面をクリックするようにすれば自動再生と同じようなことでカウントされやすくなるかも?(確証無いです。)</label><br>
+  <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から再生する</label>
 </div>
 
 <button id="playBtn">扉を開く(リストの一番上から再生)</button>
@@ -301,6 +303,8 @@ const VIDEO_LIST = [
   { name: "新田美波", url: "https://youtu.be/PAmJIvAjezg&t=1181" },
   { name: "五十嵐響子", url: "https://youtu.be/a0EPgALzUgA&t=584" },
   { name: "小日向美穂", url: "https://youtu.be/a0EPgALzUgA&t=1238" },
+  { name: "神谷奈緒", url: "https://youtu.be/pSayjTScyPs&t=704" },
+  { name: "北条加蓮", url: "https://youtu.be/pSayjTScyPs&t=1515" },
   
   
   // 以後公開されたら追加(即更新は無理です)
