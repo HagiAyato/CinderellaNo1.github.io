@@ -505,10 +505,7 @@ function loadVideo(index, autoplay) {
   let startSeconds = supportMode
     ? playlist[index].first_time
     : extractStartSeconds(playlist[index].url);
-  console.log(playlist[index].first_time);
-  if (supportMode) {
-    startSeconds = 0;
-  }
+  //console.log(playlist[index].first_time);
   if (!videoId || !player) return;
   if (autoplay) {
     player.loadVideoById({ videoId: videoId, startSeconds: startSeconds });
