@@ -443,10 +443,9 @@ document.head.appendChild(tag);
 function onYouTubeIframeAPIReady() {
   const firstId = extractVideoId(playlist[0].url);
   const supportMode = document.getElementById('supportModeCheckbox').checked;
-  let firstStart = extractStartSeconds(playlist[0].url);
-  if (supportMode) {
-    firstStart = 0;
-  }
+  const firstStart = supportMode
+    ? 0
+    : extractStartSeconds(playlist[0].url);
   player = new YT.Player('player', {
     videoId: firstId,
     playerVars: {
@@ -467,17 +466,30 @@ function getRandomNumber(min, max) {
 
 function onPlayerStateChange(event) {
   const supportMode = document.getElementById('supportModeCheckbox').checked;
-  // 再生開始(state === 1)を検知したらタイマーをセット
+
   if (event.data === YT.PlayerState.PLAYING) {
-    clearTimeout(switchTimer);
-    let num = getRandomNumber(45000, 47000);
+    if (timerActive) return;
+    
+    // 応援モードONなら2倍速にする
     if (supportMode) {
-      num = getRandomNumber(600000, 720000);
+      player.setPlaybackRate(2);
+    } else {
+      player.setPlaybackRate(1); // 通常速度に戻す
     }
-    switchTimer = setTimeout(playNext, num);
+
+    timerActive = true;
+    clearTimeout(switchTimer);
+    const num = supportMode
+      ? getRandomNumber(300000, 360000)
+      : getRandomNumber(45000, 47000);
+    switchTimer = setTimeout(() => {
+      timerActive = false;
+      playNext();
+    }, num);
   }
-  //最後まで再生されたら次の動画へ
+
   if (event.data === YT.PlayerState.ENDED) {
+    timerActive = false;
     clearTimeout(switchTimer);
     playNext();
   }
