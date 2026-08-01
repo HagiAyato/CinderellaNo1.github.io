@@ -445,7 +445,7 @@ function onYouTubeIframeAPIReady() {
   const firstId = extractVideoId(playlist[0].url);
   const supportMode = document.getElementById('supportModeCheckbox').checked;
   const firstStart = supportMode
-    ? playlist[index].first_time
+    ? playlist[0].first_time
     : extractStartSeconds(playlist[0].url);
   player = new YT.Player('player', {
     videoId: firstId,
@@ -505,6 +505,7 @@ function loadVideo(index, autoplay) {
   let startSeconds = supportMode
     ? playlist[index].first_time
     : extractStartSeconds(playlist[index].url);
+  console.log(playlist[index].first_time);
   if (supportMode) {
     startSeconds = 0;
   }
