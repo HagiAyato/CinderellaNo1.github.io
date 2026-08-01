@@ -91,7 +91,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
     <br>2026/07/29:アナスタシア美波響子美穂追加、ループ再生モード、手動再生モード実装、<br>クレジットの関係でNetlifyからGithub.pageに移管(たぶんできたはず?)、移動する秒数をランダム化
     <br>2026/07/30:リロードボタン追加(pullrequested by HagiAyato)、その他細かいバグ修正、奈緒加蓮追加
     <br>2026/07/31:藍子未央追加
-    <br>2026/08/01:凛卯月追加。<b>これで190名分揃いました。</b>
+    <br>2026/08/01:凛卯月追加。<b>これで190名分揃いました。</b><br>応援再生モード追加。いったん最後まで再生させることで短期間離脱と認識されない形にします。
   </p>
 </details>
 <details>
@@ -105,12 +105,30 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
   </p>
 </details>
 
-
+<details>
+  <summary>再生カウントの所感と応援再生モードについて</summary>
+  <p>
+    よく言われるのが
+    <br>「同じ動画を短時間に何度もループ再生すると一定以上はカウントされにくくなる」
+    <br>「同一アカウント(ログアウト時含む)、同一端末で短期間に同じ動画を複数回再生した場合カウントされない」
+    <br>「<b>どれくらいで離脱したかも重要な指標</b>」
+    <br>です。
+    <br>
+    <br>割とこの感覚は合っていて今回のように短時間再生だと効果的にカウントされてないのでは疑惑はあります。
+    <br>(歌詞パート約45秒なので3~4%ぐらいしか見て無い→アルゴリズム的に伸びない)
+    <br>業界的には40~50%が一つの壁とされており、時間で言うと9~12分ぐらいです。
+    <br>そのため、応援再生モードを作って見ました。
+    <br>どの動画も最初から再生、10分~12分で切り替えるようにしています。
+    <br>放置する方向けになっており、こちらの方が全体再生数を積極的に稼げるかも？といった感じです。
+    <br>特にここ数日youtubeアプリのプレイリスト機能が壊れてるのかループ再生が正常に動かないとのことで場合によっては使えるかもしれないです。
+  </p>
+</details>
 <a href="https://x.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Post</a><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script> 
 
 <div id="options">
-  <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)<br>完全自動再生ではカウントされないケースもあります。<br>50秒ごとに自動で再生画面をクリックするようにすれば自動再生と同じようなことでカウントされやすくなるかも?(確証無いです。)</label><br>
-  <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から再生する</label>
+  <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)<br>完全自動再生ではカウントされないケースもあります。<br>50秒ごとに自動で再生画面をクリックするようにすれば自動再生と同じようなことでカウントされやすくなるかも?(確証無いです。)</label><br><br>
+  <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から再生する</label><br><br>
+  <label><input type="checkbox" id="supportModeCheckbox"> 応援再生モード(最初から再生して10~12分経過したら次へ移動します。放置向け環境用(動画の再生中に切り替えた場合次の動画から適用されます。))</label><br>
 </div>
 
 <button id="playBtn">扉を開く(リストの一番上から再生)</button>
@@ -386,7 +404,12 @@ function renderTable() {
       loadVideo(currentIndex, true);
     });
     const tdUrl = document.createElement('td');
+    const link = document.createElement('a');
+    link.href = item.url;
     tdUrl.textContent = item.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    tdUrl.appendChild(link);
     tr.appendChild(tdName);
     tr.appendChild(tdUrl);
  
@@ -419,7 +442,12 @@ document.head.appendChild(tag);
  
 function onYouTubeIframeAPIReady() {
   const firstId = extractVideoId(playlist[0].url);
-  const firstStart = extractStartSeconds(playlist[0].url);
+  const supportMode = document.getElementById('supportModeCheckbox').checked;
+  if (!supportMode) {
+    const firstStart = extractStartSeconds(playlist[0].url);
+  }else{
+    const firstStart = 0;
+  }
   player = new YT.Player('player', {
     videoId: firstId,
     playerVars: {
@@ -439,10 +467,15 @@ function getRandomNumber(min, max) {
 }
 
 function onPlayerStateChange(event) {
+  const supportMode = document.getElementById('supportModeCheckbox').checked;
   // 再生開始(state === 1)を検知したらタイマーをセット
   if (event.data === YT.PlayerState.PLAYING) {
     clearTimeout(switchTimer);
-    num = getRandomNumber(45000,47000)
+    if (!supportMode) {
+      const num = getRandomNumber(45000, 47000);
+    }else{
+      const num = getRandomNumber(600000, 720000);
+    }
     switchTimer = setTimeout(playNext, num);
   }
 }
