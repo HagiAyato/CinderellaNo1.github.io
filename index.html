@@ -443,10 +443,9 @@ document.head.appendChild(tag);
 function onYouTubeIframeAPIReady() {
   const firstId = extractVideoId(playlist[0].url);
   const supportMode = document.getElementById('supportModeCheckbox').checked;
-  if (!supportMode) {
-    const firstStart = extractStartSeconds(playlist[0].url);
-  }else{
-    const firstStart = 0;
+  const firstStart = extractStartSeconds(playlist[0].url);
+  if (supportMode) {
+    firstStart = 0;
   }
   player = new YT.Player('player', {
     videoId: firstId,
@@ -471,10 +470,9 @@ function onPlayerStateChange(event) {
   // 再生開始(state === 1)を検知したらタイマーをセット
   if (event.data === YT.PlayerState.PLAYING) {
     clearTimeout(switchTimer);
-    if (!supportMode) {
-      const num = getRandomNumber(45000, 47000);
-    }else{
-      const num = getRandomNumber(600000, 720000);
+    const num = getRandomNumber(45000, 47000);
+    if (supportMode) {
+      num = getRandomNumber(600000, 720000);
     }
     switchTimer = setTimeout(playNext, num);
   }
