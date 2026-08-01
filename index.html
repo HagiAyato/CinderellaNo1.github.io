@@ -443,7 +443,7 @@ document.head.appendChild(tag);
 function onYouTubeIframeAPIReady() {
   const firstId = extractVideoId(playlist[0].url);
   const supportMode = document.getElementById('supportModeCheckbox').checked;
-  const firstStart = extractStartSeconds(playlist[0].url);
+  let firstStart = extractStartSeconds(playlist[0].url);
   if (supportMode) {
     firstStart = 0;
   }
@@ -470,7 +470,7 @@ function onPlayerStateChange(event) {
   // 再生開始(state === 1)を検知したらタイマーをセット
   if (event.data === YT.PlayerState.PLAYING) {
     clearTimeout(switchTimer);
-    const num = getRandomNumber(45000, 47000);
+    let num = getRandomNumber(45000, 47000);
     if (supportMode) {
       num = getRandomNumber(600000, 720000);
     }
