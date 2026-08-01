@@ -488,9 +488,10 @@ function onPlayerStateChange(event) {
  
 function loadVideo(index, autoplay) {
   const videoId = extractVideoId(playlist[index].url);
+  const supportMode = document.getElementById('supportModeCheckbox').checked;
   let startSeconds = extractStartSeconds(playlist[index].url);
   if (supportMode) {
-    firstStart = 0;
+    startSeconds = 0;
   }
   if (!videoId || !player) return;
   if (autoplay) {
