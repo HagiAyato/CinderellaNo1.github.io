@@ -118,7 +118,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
     <br>(歌詞パート約45秒なので3~4%ぐらいしか見て無い→アルゴリズム的に伸びない)
     <br>業界的には40~50%が一つの壁とされており、時間で言うと9~12分ぐらいです。
     <br>そのため、応援再生モードを作って見ました。
-    <br>どの動画も最初から再生、10分~12分で切り替えるようにしています。
+    <br>どの動画も最初から2倍速で再生、5分~6分(実動画における10分~12分)で切り替えるようにしています。
     <br>放置する方向けになっており、こちらの方が全体再生数を積極的に稼げるかも？といった感じです。
     <br>特にここ数日youtubeアプリのプレイリスト機能が壊れてるのかループ再生が正常に動かないとのことで場合によっては使えるかもしれないです。
   </p>
@@ -128,7 +128,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 <div id="options">
   <label><input type="checkbox" id="stopAutoplayCheckbox"> 次の動画は読み込みのみ(自動再生しない)<br>完全自動再生ではカウントされないケースもあります。<br>50秒ごとに自動で再生画面をクリックするようにすれば自動再生と同じようなことでカウントされやすくなるかも?(確証無いです。)</label><br><br>
   <label><input type="checkbox" id="loopCheckbox"> 最後まで再生したら最初から再生する</label><br><br>
-  <label><input type="checkbox" id="supportModeCheckbox"> 応援再生モード(最初から再生して10~12分経過したら次へ移動します。放置向け環境用(動画の再生中に切り替えた場合次の動画から適用されます。))</label><br>
+  <label><input type="checkbox" id="supportModeCheckbox"> 応援再生モード(動画の最初から2倍速で再生して5~6分経過したら次へ移動します。放置向け環境用(動画の再生中に切り替えた場合次の動画から適用されます。))</label><br>
 </div>
 
 <button id="playBtn">扉を開く(リストの一番上から再生)</button>
@@ -387,6 +387,7 @@ const playlist = shuffle(VIDEO_LIST);
 let currentIndex = 0;
 let switchTimer = null;
 let player = null;
+let timerActive = false;
  
 // --- 表を描画 ---
 function renderTable() {
