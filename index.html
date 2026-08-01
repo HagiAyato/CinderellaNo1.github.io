@@ -476,6 +476,11 @@ function onPlayerStateChange(event) {
     }
     switchTimer = setTimeout(playNext, num);
   }
+  //最後まで再生されたら次の動画へ
+  if (event.data === YT.PlayerState.ENDED) {
+    clearTimeout(switchTimer);
+    playNext();
+  }
   
 }
 
