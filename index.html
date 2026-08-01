@@ -534,15 +534,14 @@ function playNext() {
  
 document.getElementById('playBtn').addEventListener('click', function() {
   currentIndex = 0;
-  const supportMode = document.getElementById('supportModeCheckbox').checked;
-  // 応援モードによって再生速度を変更
-  if (supportMode) {
-    player.setPlaybackRate(2);
-  } else {
-    player.setPlaybackRate(1); // 通常速度に戻す
-  }
   if (player && player.loadVideoById) {
     loadVideo(currentIndex, true);
+  }
+});
+
+document.getElementById('supportModeCheckbox').addEventListener('change', function() {
+  if (player && player.setPlaybackRate) {
+    player.setPlaybackRate(this.checked ? 2 : 1);
   }
 });
  
