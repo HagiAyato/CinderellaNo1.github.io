@@ -476,13 +476,17 @@ function onPlayerStateChange(event) {
     }
     switchTimer = setTimeout(playNext, num);
   }
+  
 }
 
 
  
 function loadVideo(index, autoplay) {
   const videoId = extractVideoId(playlist[index].url);
-  const startSeconds = extractStartSeconds(playlist[index].url);
+  let startSeconds = extractStartSeconds(playlist[index].url);
+  if (supportMode) {
+    firstStart = 0;
+  }
   if (!videoId || !player) return;
   if (autoplay) {
     player.loadVideoById({ videoId: videoId, startSeconds: startSeconds });
