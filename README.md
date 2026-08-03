@@ -1,5 +1,9 @@
 # シンデレラNo1 再生補助用ページ
 
+## 肇に(激ウマギャグ)
+### 井村雪菜への投票お願いします！！！
+https://idolmaster-official.jp/cinderellagirls/vote2026/vote/idol/imura_setsuna
+
 ## 概要
 シンデレラガール総選挙2026企画の一つである各アイドルのデレステコミュ+シンデレラNo1歌詞公開動画の再生補助を行うページです。
 
@@ -30,6 +34,7 @@ Youtubeはどうやったらカウントされるかの情報は非公開なの�
 ⇒ご自由にお使いください。
 ライセンスはWTFPL https://ja.wikipedia.org/wiki/WTFPL です。
 使用する場合、少しでもいいので井村雪菜に票をお恵みいただけると幸いです。
+https://idolmaster-official.jp/cinderellagirls/vote2026/vote/idol/imura_setsuna
 勿論アイマス外での利用も可です。
 使用した結果何らかの不都合が生じても責任は負いませんのでご承知おきください。
 ### 何なんだよこのドメイン…
@@ -37,4 +42,5 @@ Youtubeはどうやったらカウントされるかの情報は非公開なの�
 
 ## 最後に
 ### 井村雪菜に投票お願いいたします！！！！！！
+https://idolmaster-official.jp/cinderellagirls/vote2026/vote/idol/imura_setsuna
 ### あと12月9日の井村雪菜登場15周年を記念して応援広告企画を行う予定です。詳細は近日発表します。
